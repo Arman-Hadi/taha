@@ -71,7 +71,7 @@
       myChart.update();
     }
 
-    const stock = '{{ stock }}'
+    const stock = '{{ stock[0] }}'
     $('#DrawGraph').click(function(){
       $.ajax({
         url: "/api/s/"+stock,
