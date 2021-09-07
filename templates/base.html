@@ -10,24 +10,31 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
-        <div class="container-lg">
-            <div class="row">
-                <a href="/" class="btn btn-success m-2 py-3">Home</a>
+        <div class="d-flex flex-row">
+            <a class="btn btn-info py-3 rounded-0 flex-fill" data-bs-toggle="offcanvas" href="#StockToggle" role="button" aria-controls="StockToggle">Stocks</a>
+            <a href="/" class="btn btn-success py-3 rounded-0 flex-fill">Home</a>
+            <a href="#" class="btn btn-primary py-3 rounded-0 flex-fill">Import</a>
+        </div>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="StockToggle" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Stocks</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="row">
-                <div class="col-sm-auto p-2">
-                    <h4>Stocks:</h4>
-                    <div class="list-group">
-                        {% for f, fn in files %}
+            <div class="offcanvas-body">
+                <div class="list-group">
+                    {% for f in files %}
+                        {% if f == stock %}
+                            <a href="/s/{{ f }}" class="list-group-item list-group-item-action active">{{ f }}</a>
+                        {% else %}
                             <a href="/s/{{ f }}" class="list-group-item list-group-item-action">{{ f }}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="col p-2">
-                    {% block content %}
-                    {% endblock %}
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
+        </div>
+        <div class="container-lg py-3">
+            {% block content %}
+            {% endblock %}
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
