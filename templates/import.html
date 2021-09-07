@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Import</title>
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-3">Import CSV data:</h1>
+<form method="POST" class="py-3 d-flex flex-column" enctype="multipart/form-data">
+    <input type="file" name="files" class="form-control mb-3" accept=".csv," multiple required>
+    <button type="submit" class="btn btn-primary mb-3">Import</button>
+</form>
+{% endblock %}

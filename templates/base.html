@@ -13,25 +13,30 @@
         <div class="d-flex flex-row">
             <a class="btn btn-info py-3 rounded-0 flex-fill" data-bs-toggle="offcanvas" href="#StockToggle" role="button" aria-controls="StockToggle">Stocks</a>
             <a href="/" class="btn btn-success py-3 rounded-0 flex-fill">Home</a>
-            <a href="#" class="btn btn-primary py-3 rounded-0 flex-fill">Import</a>
+            <a href="/import" class="btn btn-primary py-3 rounded-0 flex-fill">Import</a>
         </div>
         <div class="offcanvas offcanvas-start" tabindex="-1" id="StockToggle" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Stocks</h5>
+                <h4 class="offcanvas-title" id="offcanvasExampleLabel">Stock List</h4>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div class="list-group">
-                    {% for f in files %}
-                        {% if f == stock %}
-                            <a href="/s/{{ f }}" class="list-group-item list-group-item-action active">{{ f }}</a>
+                    {% for fn, f in files.items() %}
+                        {% if stock and fn == stock[0] %}
+                            <a href="/s/{{ fn }}" class="list-group-item list-group-item-action active">{{ f }}</a>
                         {% else %}
-                            <a href="/s/{{ f }}" class="list-group-item list-group-item-action">{{ f }}</a>
+                            <a href="/s/{{ fn }}" class="list-group-item list-group-item-action">{{ f }}</a>
                         {% endif %}
                     {% endfor %}
                 </div>
             </div>
         </div>
+        {% if request.args.get('alert', None) %}
+        <div class="alert alert-info" role="alert">
+            {{ request.args.get('alert', None) }}
+        </div>
+        {% endif %}
         <div class="container-lg py-3">
             {% block content %}
             {% endblock %}

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>TAHA</title>
+    <title>{{ stock }}</title>
 {% endblock %}
 
 {% block content %}
-<h1 class="text-center mb-0">{{ stock }}</h1>
+<h1 class="text-center mb-0">{{ stock[1] }}</h1>
 <p class="text-center text-secondary">{{ len }} records were found.</p>
 <h4 class="mb-3">Graph Settings:</h4>
 <div class="row g-3 align-items-center mb-3">
